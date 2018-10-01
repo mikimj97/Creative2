@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+            <script>
+            $(document).ready(function(){
+                $("#randomButton").click(function(e) {
+                    e.preventDefault();
+                    $.ajax({
+                        url : "https://www.boredapi.com/api/activity",
+                        dataType : "json",
+                        success : function(parsed_json) {
+                            var activity = parsed_json[$("#inputBox").val()];
+                            console.log(activity);
+                            $("#random").html(activity);
+                        }
+                    });  
+                });
+                  
+            });
+        
+        </script>
+    </head>
+    
+    <body>
+        <div>
+            <form>
+                Type "activity" for now
+                <input type="text" id="inputBox"/>
+                <input type="submit" id="randomButton" value="Submit"/>
+            </form>
+        </div>
+        <div id="random">No Activity</div>
+    </body>
+</html>
