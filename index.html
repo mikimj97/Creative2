@@ -5,76 +5,111 @@
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="main.css" type="text/css" />
+        <link rel="stylesheet" href="main.css" type="text/css">
         
         <title>Creative 2</title>
         
         
-            <script>
-            $(document).ready(function(){
-                $("#random").click(function(e) {
-                    e.preventDefault();
-                    var url = "";
-                    generator(url);
-                });
+        <script>
+            var points = 0;
+            var url;
+            function addPoints() {
+                var taskPoints = parseInt($('#accessibility').text());
+                points = points + taskPoints;
+                $("#points").html(points);
+                generator(url);
+            }            
+            
+            function losePoints() {
+                points = points - (parseInt($('#accessibility').text()) / 10);
+                $("#points").html(points);
+                generator(url);
+            }
+            
+            function random() {
+                url = "";
+                generator(url);
+            };
                 
-                $("#recreational").click(function(e) {
-                    e.preventDefault();
-                    var url = "?type=recreational";
-                    generator(url);
-                });
+            function recreational() {
+                url = "?type=recreational";
+                generator(url);
+            };
+            
+            function social() {
+                url = "?type=social";
+                generator(url);
+            };
+            
+            function charity() {
+                url = "?type=charity";
+                generator(url);
+            };            
+             
+            function relaxation() {
+                url = "?type=relaxation";
+                generator(url);
+            };
                 
-                $("#charity").click(function(e) {
-                    e.preventDefault();
-                    var url = "?type=charity";
-                    generator(url);
-                });
-                    
-                    
-                function generator(myurl) {
+                
+            function generator(myurl) {
                    
-                    $.ajax({
-                        url : "https://www.boredapi.com/api/activity" + myurl,
-                        dataType : "json",
-                        success : function(parsed_json) {
-                            var list = "<ul>";
-                            var activity = parsed_json['activity'];
-                            var type = parsed_json['type'];
-                            var accessibility = parsed_json['accessibility'];
-                            var participants = parsed_json['participants'];
-                            var cost = parsed_json['cost'];
-                            
-                            
-                            list += "<li>Activity: " + activity;
-                            list += "<li>Type: " + type;
-                            list += "<li>Accessibility/difficulty: " + accessibility;
-                            list += "<li>Participants: " + participants;
-                            list += "<li>Cost: " + cost;
-                            $("#activity").html(list);
-                        }
-                    });  
-                };
-            });
+                $.ajax({
+                    url : "https://www.boredapi.com/api/activity" + myurl,
+                    dataType : "json",
+                    success : function(parsed_json) {
+                        var list = "<p>";
+                        var activity = parsed_json['activity'];
+                        var type = parsed_json['type'];
+                        var accessibility = parsed_json['accessibility'] * 10000;
+                        var participants = parsed_json['participants'];
+                        //var cost = parsed_json['cost'];
+                        
+                        
+                        list += "Activity: " + activity + "<br>";
+                        list += "Type: " + type + "</br>";
+                        list += "Task points: <strong id=\"accessibility\">" + accessibility + "</strong>" + "<br>";
+                        list += "Participants: " + participants + "<br>";
+                        list += "</p>"
+                       // list += "<li>Cost: " + cost + "</li>";
+                        $("#activity").html(list);
+                    }
+                });  
+                
+                $("#activityComplete").css("visibility", "visible");
+            }              
         
         </script>
     </head>
     
-    <body>
+    <body style="display:block; margin:30px 30%;">
         <h1>Activity Generator</h1>
+        <h5 class="centered">Are you bored? Try out one of my interesting tasks!</h5>
+        <p>Choose a type of activity to receive a task. Complete it to earn points. Lose points by not completing the task.</p>
         <container>
             <div class="dropdown">
+                <div class="centered">
                 <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Type of activity
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <button class="dropdown-item btn btn-secondary" type="button" id="random">Random</button>
-                    <button class="dropdown-item btn btn-secondary" type="button" id="charity">Charity</button>
-                    <button class="btn btn-secondary dropdown-item " type="button" id="recreational">Recreation</button>
+                    <button class="dropdown-item btn btn-secondary" type="button" id="random" onclick="random()">Random</button>
+                    <button class="dropdown-item btn btn-secondary" type="button" id="charity" onclick="charity()">Charity</button>
+                    <button class="btn btn-secondary dropdown-item " type="button" id="recreational" onclick="recreational()">Recreation</button>
+                    <button class="btn btn-secondary dropdown-item " type="button" id="social" onclick="social()">Social</button>
+                    <button class="btn btn-secondary dropdown-item " type="button" id="relaxation" onclick="relaxation()">Relaxation</button>
                 </div>
+                <h4 style="margin:30px;">Points: <strong id="points">0</strong></h4>
+                </div>
+
             </div>
             
-            <br><p><b>Activity</b></p>
-            <div id="activity">No Activity</div>
+            <div id="activity"></div>
+            <div class="centered" id="activityComplete"><h4>Did you complete the activity?</h4>
+              <button type="button" class="btn btn-primary btn-md" onclick="addPoints()">Yes</button>  
+              <button type="button" class="btn btn-primary btn-md" onclick="losePoints()">No</button>
+              
+            </div>
         </container>
     </body>
 </html>

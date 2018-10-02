@@ -2,11 +2,14 @@ body {
     background-color: lightblue;
 }
 
-
-#div1 {
-    
+h1 {
+    text-align:center;
 }
-
-#div2 {
-    
+            
+.centered {
+    text-align:center;
+}
+            
+#activityComplete {
+    visibility: hidden;
 }
