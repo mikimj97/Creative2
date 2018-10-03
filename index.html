@@ -53,6 +53,27 @@
             generator(url);
         };
 
+<<<<<<< HEAD
+=======
+        function DIY() {
+            url = "?type=diy";
+            generator(url);
+        };
+
+        function cooking() {
+            url = "?type=cooking";
+            generator(url);
+        };
+
+        function music() {
+            url = "?type=music";
+            generator(url);
+        };
+
+        function busywork() {
+            url = "?type=busywork";
+            generator(url);
+        };
 
         function generator(myurl) {
 
@@ -81,7 +102,7 @@
 
             $("#activityComplete").css("visibility", "visible");
         }
-        
+    
         function reset() {
             points = 0;
             $("#points").html(points);
@@ -110,10 +131,13 @@
                                 <button class="btn btn-secondary dropdown-item " type="button" id="recreational" onclick="recreational()">Recreation</button>
                                 <button class="btn btn-secondary dropdown-item " type="button" id="social" onclick="social()">Social</button>
                                 <button class="btn btn-secondary dropdown-item " type="button" id="relaxation" onclick="relaxation()">Relaxation</button>
+                                <button class="btn btn-secondary dropdown-item " type="button" id="diy" onclick="DIY()">DIY</button>
+                                <button class="btn btn-secondary dropdown-item " type="button" id="cooking" onclick="cooking()">Cooking</button>
+                                <button class="btn btn-secondary dropdown-item " type="button" id="music" onclick="music()">Music</button>
+                                <button class="btn btn-secondary dropdown-item " type="button" id="busywork" onclick="busywork()">Busy Work</button>
                             </div>
                             <h4 style="margin:30px;">Points: <strong id="points">0</strong></h4>
                         </div>
-
                     </div>
                     <br>
                     <div id="activity"></div>
@@ -126,6 +150,13 @@
                     <br>
                     <div>
                         <button type="button" onclick="reset()" class="btn btn-primary btn-md">Reset Points</button>
+                    </div>
+                    <br>
+                    <div id="activity"></div>
+                    <div class="centered" id="activityComplete">
+                        <h4>Did you complete the activity?</h4>
+                        <button type="button" class="btn btn-primary btn-md" onclick="addPoints()">Yes</button>
+                        <button type="button" class="btn btn-primary btn-md" onclick="losePoints()">No</button>
                     </div>
                 </container>
             </p>
