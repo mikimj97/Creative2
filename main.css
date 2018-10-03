@@ -1,8 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,700,900');
 body {
+    font-family: Raleway;
     background-color: lightblue;
+    background-image: url("http://i.imgur.com/ARKKod1.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+p {
+    text-align: center;
+}
+h1 {
+    text-align:center;
 }
 
-h1 {
+h2 {
     text-align:center;
 }
             
@@ -12,4 +24,34 @@ h1 {
             
 #activityComplete {
     visibility: hidden;
+}
+
+ul {
+    width: 70%;
+    margin: auto;
+}
+
+li {
+    text-align: left;
+}
+
+#home-hero {
+    margin: auto;
+    width: 70%;
+}
+
+#home-hero-header {
+    font-size: 35px;
+    font-weight: Bold;
+}
+
+#cardPage {
+    margin: auto;
+    width: 70%;
+    /*border: 3px solid black;*/
+    /*padding: 10px;*/
+}
+
+.card-body {
+    background-color: lightblue;
 }
