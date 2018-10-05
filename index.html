@@ -105,6 +105,21 @@
             points = 0;
             $("#points").html(points);
         }
+        
+        function randomVideo() {
+            console.log("Clicked");
+            var videos = ["<iframe width=\"600\" height=\"315\" src=\"https://www.youtube.com/embed/ApkF3SC98vU\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>",
+                        "<iframe width=\"600\" height=\"315\" src=\"https://www.youtube.com/embed/NUYpC0k27ig\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>",
+                        "<iframe width=\"600\" height=\"315\" src=\"https://www.youtube.com/embed/-7tSff3GwL4\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>",
+                        "<iframe width=\"600\" height=\"315\" src=\"https://www.youtube.com/embed/UhNX5NdJCs4\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>",
+                        "<iframe width=\"600\" height=\"315\" src=\"https://www.youtube.com/embed/KYmr3SYUOYo\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>",
+                        "<iframe width=\"600\" height=\"315\" src=\"https://www.youtube.com/embed/4PYQaJ2QV0k\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>"]
+                    
+                    
+                    var random = videos[Math.floor(Math.random()*videos.length)]    
+                    $("#video").html(random);
+        }
+      
     </script>
 </head>
 
@@ -172,9 +187,11 @@
         <div class="card-body">
             <h5 class="card-title">Watch some Cartoons!</h5>
             <p class="card-text">
+                <div id="video">
                 <iframe width="600" height="315" src="https://www.youtube.com/embed/ApkF3SC98vU" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </div>
             </p>
-           <!-- <a href="#" class="btn btn-primary">Random Channels?</a> -->
+            <button type="button" class="btn btn-primary" onclick="randomVideo()">Click for a Random Cartoon Show!</button> 
         </div>
         <div class="card-footer text-muted">
         </div>
